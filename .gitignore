@@ -2,6 +2,7 @@
 /build/
 **/out
 **/build
+settings.gradle
 
 ### IntelliJ IDEA ###
 .idea
