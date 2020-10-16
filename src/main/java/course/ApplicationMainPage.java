@@ -2,6 +2,7 @@ package course;
 
 import application.EBookHomePage;
 import application.EBookLoginPage;
+import application.InvalidLoggingPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,43 +20,14 @@ public class ApplicationMainPage {
         webDriver.get("https://ta-ebookrental-fe.herokuapp.com/login");//wydanie przeglądarce polecenia otwarcia strony o wskazanym adresie
         //   webDriver.navigate().to("https://ta-ebookrental-fe.herokuapp.com/login");
 
-//        EBookLoginPage eBookLoginPage = new EBookLoginPage(webDriver);
-//        WebDriver page = eBookLoginPage.loginValidUser("test", "test");
+        EBookLoginPage eBookLoginPage = new EBookLoginPage(webDriver);
+        EBookHomePage page = eBookLoginPage.loginValidUser("test0", "test0");
 //
-//        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-//        WebElement messageElement = wait.until(
-//                ExpectedConditions.visibilityOf(page.findElement(By.className("title text--center")))
-//        );
+//        System.out.println(page.getMessageText());
 
-//        WebElement message = page.findElement(By.className("sub-title flex-grow--1 margin-right--1"));
-//        System.out.println(messageElement.getText());
-        System.out.println("asdasdasdaddad");
-        WebElement webElement = webDriver.findElement(By.className("title text--center"));
-        WebDriverWait some_element = new WebDriverWait(webDriver,10);
-        some_element.until(ExpectedConditions.presenceOfElementLocated(By.className("title text--center")));
-        System.out.println(some_element);
-        System.out.println(webElement.getText());
+//        System.out.println(webDriver.findElement(By.tagName("h1")).getText());
+        InvalidLoggingPage invalidLoggingPage = new InvalidLoggingPage(webDriver);
+        System.out.println(invalidLoggingPage.getMessageText());
 
-
-        //     System.out.println(page.getMessageText());
-
-
-        //        HomePage homePage = new HomePage(webDriver);
-
-        //       LoginPage loginPage = new LoginPage(webDriver);
-        //      loginPage.loginValidUser("test","test");
-
-//        WebElement yearCombo = driver.findElement(By.xpath("//*[@id=\"birthday_wrapper\"]/div/span/span/select[3]"));
-//        Select yearSelect = new Select(yearCombo);
-//        yearSelect.selectByIndex(5);
-
-/*
-        WebElement inputField = webDriver.findElement(By.name("q"));
-        inputField.sendKeys("Kodilla");
-        inputField.submit();*/
-
-
-        //WebDriverWait wait = new WebDriverWait(driver, 20);
-        // wait.until(ExpectedConditions.visibilityOfAllElements(By.className("my_Class")));
     }
 }

@@ -7,25 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 
 public class EBookHomePage extends AbstractPage {
 
-    //  private By messageBy = By.className("sub-title flex-grow--1 margin-right--1");
-    @FindBy(className = "titles page")
+    @FindBy(tagName = "h1")
     static WebElement pageTitle;
 
     public EBookHomePage(WebDriver webDriver) {
         super(webDriver);
+        if (!webDriver.getTitle().equals("app")) {
+            throw new IllegalStateException("This is not Home Page of logged in user," +
+                    " current page is: " + webDriver.getCurrentUrl());
+        }
         PageFactory.initElements(this.webDriver, this);
-
-//        if (!webDriver.getTitle().equals("TITLES CATALOG")) {
-//            throw new IllegalStateException("This is not Home Page of logged in user," +
-//                    " current page is: " + webDriver.getCurrentUrl());
-//        }
     }
-
 
     public String getMessageText() {
         return pageTitle.getText();
     }
-
 
     public EBookHomePage manageProfile() {
         // Page encapsulation to manage profile functionality

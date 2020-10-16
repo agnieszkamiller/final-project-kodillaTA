@@ -22,11 +22,11 @@ public class EBookLoginPage extends AbstractPage {
 
     }
 
-    public WebDriver loginValidUser(String userName, String password) {
+    public EBookHomePage loginValidUser(String userName, String password) {
         loginBar.sendKeys(userName);
         passwordBar.sendKeys(password);
         loggingBtn.click();
-        return webDriver;
+        return new EBookHomePage(webDriver);
     }
 
 }
