@@ -1,5 +1,6 @@
 package application;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,10 +17,15 @@ public class EBookLoginPage extends AbstractPage {
     @FindBy(css = "button[id='login-btn']")
     static WebElement loggingBtn;
 
+    @FindBy(className = "alert__content")
+    static WebElement error;
+
+    @FindBy(id = "register-btn")
+    static WebElement signUpBtn;
+
     public EBookLoginPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(this.webDriver, this);
-
     }
 
     public EBookHomePage loginValidUser(String userName, String password) {
@@ -29,6 +35,18 @@ public class EBookLoginPage extends AbstractPage {
         return new EBookHomePage(webDriver);
     }
 
+    public String getError() {
+        String myError = null;
+        if (!error.getText().equals("")) {
+            myError = error.getText();
+        }
+        return myError;
+    }
+
+    public SignUpPage switchToRegisterPage() {
+        signUpBtn.click();
+        return new SignUpPage(webDriver);
+    }
 }
 
 //oddzielna klasa wraz z metodami reprezentującymi czynności jakie można wykonywać na stronie

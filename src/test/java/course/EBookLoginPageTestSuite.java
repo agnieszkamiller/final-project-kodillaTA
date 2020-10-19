@@ -3,6 +3,7 @@ package course;
 import application.EBookHomePage;
 import application.EBookLoginPage;
 import application.InvalidLoggingPage;
+import application.SignUpPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,9 +40,34 @@ class EBookLoginPageTestSuite {
 //        Assertions.assertEquals("eBook .app", homePage.getMessageText());
     }
 
+    @Test
+    void shouldGetErrorWhenFieldsLeavesEmpty() {
+        EBookLoginPage eBookLoginPage = new EBookLoginPage(driver);
+        EBookHomePage homePage = eBookLoginPage.loginValidUser("", "");
+        Assertions.assertEquals("You can't leave fields empty", eBookLoginPage.getError());
+
+
+    }
+
+    @Test
+    void shouldGetErrorWhenWrongPassword() {
+        EBookLoginPage eBookLoginPage = new EBookLoginPage(driver);
+        EBookHomePage homePage = eBookLoginPage.loginValidUser(".", ".");
+        Assertions.assertEquals("Login failed", eBookLoginPage.getError());
+    }
+
+    @Test
+    void shouldSwitchToSignUpPage() {
+        EBookLoginPage eBookLoginPage = new EBookLoginPage(driver);
+        SignUpPage signUpPage = eBookLoginPage.switchToRegisterPage();
+        EBookHomePage signUpPageName = signUpPage.signingUpPage();
+//        Assertions.assertEquals("SIGN UP", signUpPageName);
+        System.out.println(signUpPageName.getMessageText());
+    }
+
     @AfterEach
     public void tearDown() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver,10);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         driver.close();
     }
 }

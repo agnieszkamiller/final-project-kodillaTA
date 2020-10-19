@@ -20,14 +20,21 @@ public class ApplicationMainPage {
         webDriver.get("https://ta-ebookrental-fe.herokuapp.com/login");//wydanie przeglądarce polecenia otwarcia strony o wskazanym adresie
         //   webDriver.navigate().to("https://ta-ebookrental-fe.herokuapp.com/login");
 
-        EBookLoginPage eBookLoginPage = new EBookLoginPage(webDriver);
-        EBookHomePage page = eBookLoginPage.loginValidUser("test0", "test0");
+//        EBookLoginPage eBookLoginPage = new EBookLoginPage(webDriver);
+//        EBookHomePage page = eBookLoginPage.loginValidUser("test0", ".");
+
+        WebElement webElement = webDriver.findElement(By.id("register-btn"));
+        webElement.click();
+        WebElement signUp = webDriver.findElement(By.tagName("h2"));
+        System.out.println(signUp.getText());
+
+
 //
-//        System.out.println(page.getMessageText());
+//        System.out.println(eBookLoginPage.getError());
 
 //        System.out.println(webDriver.findElement(By.tagName("h1")).getText());
-        InvalidLoggingPage invalidLoggingPage = new InvalidLoggingPage(webDriver);
-        System.out.println(invalidLoggingPage.getMessageText());
+//        InvalidLoggingPage invalidLoggingPage = new InvalidLoggingPage(webDriver);
+//        System.out.println(invalidLoggingPage.getMessageText());
 
     }
 }

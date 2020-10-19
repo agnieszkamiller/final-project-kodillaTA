@@ -10,6 +10,8 @@ public class EBookHomePage extends AbstractPage {
     @FindBy(tagName = "h1")
     static WebElement pageTitle;
 
+    //@FindBy()
+
     public EBookHomePage(WebDriver webDriver) {
         super(webDriver);
         if (!webDriver.getTitle().equals("app")) {
