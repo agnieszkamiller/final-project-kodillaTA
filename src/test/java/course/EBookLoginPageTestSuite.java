@@ -22,7 +22,11 @@ class EBookLoginPageTestSuite {
 
         driver.get("https://ta-ebookrental-fe.herokuapp.com/login");
     }
-
+    @Test
+    public void shouldOpenedPageIsTheCorrectMainPage(){
+        Assertions.assertTrue(driver.getTitle().startsWith("app"));
+    }
+    
     @Test
     void shouldLoginValidUser() {
         application.EBookLoginPage loginPage = new application.EBookLoginPage(driver);
